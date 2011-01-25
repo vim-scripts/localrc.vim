@@ -1,5 +1,5 @@
 " Enable configuration file of each directory.
-" Version: 0.1.0
+" Version: 0.1.2
 " Author : thinca <thinca+vim@gmail.com>
 " License: Creative Commons Attribution 2.1 Japan License
 "          <http://creativecommons.org/licenses/by/2.1/jp/deed.en>
@@ -17,19 +17,18 @@ if !exists('g:localrc_filename')
 endif
 
 if !exists('g:localrc_filetype')
-  let g:localrc_filetype = '.local.%s.vimrc'
+  let g:localrc_filetype = '/^\.local\..*\<%s\>.*\.vimrc$'
 endif
 
 
 augroup plugin-localrc  " {{{
   autocmd!
-  autocmd BufNewFile,BufReadPost *
-  \       call localrc#load(g:localrc_filename, expand('<afile>:p:h'))
+  autocmd BufNewFile,BufReadPost * call localrc#load(g:localrc_filename)
   autocmd FileType *
   \   call localrc#load(
   \     map(type(g:localrc_filetype) == type([]) ? copy(g:localrc_filetype)
   \                                              : [g:localrc_filetype],
-  \         'printf(v:val, expand("<amatch>"))'), expand('<afile>:p:h'))
+  \         'printf(v:val, expand("<amatch>"))'))
 augroup END  " }}}
 
 

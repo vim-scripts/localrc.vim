@@ -1,6 +1,6 @@
 *localrc.txt*	Enable configuration file of each directory.
 
-Version: 0.1.0
+Version: 0.1.2
 Author : thinca <thinca+vim@gmail.com>
 License: Creative Commons Attribution 2.1 Japan License
          <http://creativecommons.org/licenses/by/2.1/jp/deed.en>
@@ -93,7 +93,7 @@ g:localrc_filetype				*g:localrc_filetype*
 	THe name of configuration file for specific filetype.
 	"%s" is replaced by filetype.
 
-	default: ".local.%s.vimrc"
+	default: '/^\.local\..*\<%s\>.*\.vimrc$'
 
 
 
@@ -119,6 +119,12 @@ For example, in vimrc...
 
 ==============================================================================
 CHANGELOG					*localrc-changelog*
+
+0.1.2	2011-01-25
+	- Improved the default value of |g:localrc_filetype|.
+
+0.1.1	2011-01-17
+	- Use "%" instead of "<afile>".
 
 0.1.0	2011-01-08
 	- Initial version.
